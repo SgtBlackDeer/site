@@ -1,0 +1,1164 @@
+.game {
+    height: 100vh;
+    width: 100%;
+}
+
+.game_btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    background-color: coral;
+    padding: 10px;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+    border-radius: 5px;
+}
+
+.game_btn:hover {
+    background-color: brown;
+}
+
+.game_btn--back {
+    align-self: flex-start;
+}
+
+.game_btn + .game_btn {
+    margin-top: 10px;
+}
+
+.game_menu {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    min-height: 100vh;
+    height: calc(100% + 50px);
+    padding-top: 150px;
+    background-color: chocolate;
+    transition: height 1.5s ease-in-out;
+    z-index: 15;
+}
+
+.game_menu.reduced {
+    flex-direction: row;
+    min-height: auto;
+    height: 50px;
+    padding-top: 0;
+}
+
+.game_menu.reduced .game_menu_items {
+    pointer-events: none;
+}
+
+.game_menu_items {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    opacity: 0;
+    max-width: 400px;
+    transition: opacity 1s ease-in-out;
+}
+
+.game_menu_item--title {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+
+.game_menu_item--i {
+    display: flex;
+    justify-content: center;
+    font-size: 20px;
+}
+
+.game_menu_item--i div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background-color: coral;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.game_menu_item--i div:hover {
+    background-color: brown;
+}
+
+.game_menu_item--rules {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.7s ease-in-out;
+}
+
+.game_menu_item--rules.display {
+    max-height: 200px;
+}
+
+.game_menu_item--subtitle {
+    font-size: 20px;
+    margin: 15px 0;
+}
+
+.game_menu_item {
+    width: 100%;
+}
+
+.game_menu_item + .game_menu_item {
+    margin-top: 15px;
+}
+
+.game_menu_item .game_btn {
+    width: 100%;
+    padding: 20px;
+}
+
+.game_menu_infos {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    opacity: 0;
+    background-color: chocolate;
+    transition: opacity 1s ease-in-out;
+}
+
+.game_menu_info {
+    display: flex;
+    align-items: center;
+}
+
+.game_menu_info--center {
+    justify-content: center;
+}
+
+.game_image {
+    width: 100%;
+    object-fit: contain;
+}
+
+.info {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-width: 200px;
+}
+
+.info_lives_title {
+    margin-right: 10px;
+}
+
+.info_lives_heart {
+    width: 35px;
+    height: 35px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAADIElEQVRoge2YTUgVURTHf/pKUrPoQSJluaiF9OhDCKNVhbitoJVREa0kkMAIKu2DFi3a2SIooxZtCqlEwk20rEVWSFjWokVmlAr5QiI0n7aY++B55rxx7sw8n4v5wV3McM7//O97d+7MuRATExNTTEosYpPAYeAgUA/UmvxxYAh4ATwEfi6iUwO0AE1ACqgG5oFRYBjoA3qBSQtvnpQDHcBvU8hrTAN3gPWKTjXQbWIW00kDF03tUNQCb30UlGMC2Jejs9/cs9UZADaGMT8aoGjuv3EMOAHMhND5FmQS5ei//BjQCewCKoEKYBvQDowo8f/MkPdHgLMmt8JoNRjtcSV+AFhlM4EORaQHqPLIKTN5s0pudswCF0xsPtYAj5Xc837NJ3E/sD3437EOoS+ZGZwdzA+luCeRBtb5ST4lEsfw/uU1jgKZHI2MuWfDWtzL6aSfxF6R1GlZOEsrMGdGa0CNy8LLEz9Jn0XSzoDFwVm3vteuQoPw8slP0pRIWh3CQFiqhJcpGVCqJK0Q15nofflmTly7/GoTmBDXWyKzY4+sLb2pExgU182R2bFH1pbeVNpZuO6GIjZlw0fh5YyfpDoW7uHzwIECGfSiSXiYxfk+80WfSH4HJKL3mJcEznKxfgdkacT9L5yO1qMnbaJ2BthtK3JfiPwFdkTnMS8p4I+o3R1EqAb3R90QzqdvoagEPoiaaZxuLhAtQmweeEZhnocE8FSpdzys8D1F9GZYUYVbSp27UQhXAO8V8WtRiBuuK/qDRNDUZ9mE05vKIpci0L6i6I4QopnPRwr4pRTrwu58KUsJcEPRS1PA3W4v+vnQbewe7ATO+ZFmfk+EflXyTeIR3s16ljITWxTzWRrRD6qe490/V5kYmTdOgDdtWOqBr4qZN+gvniTwSon/DmxfAr8qG9C32C/A1py4Opx+VsYNA5uX0K9KEniJ29wPnBO8FPoW/Br9ELgoVAL9uE1OmiHv91PYb6pAJHC+GqVZOR4AK4vkcVFKgKvkN9+F3ocvO9pY2BDNAeeK6igAR3CaoGnsz0WXDc0U91gmJiZmufMfju6guQZFQvUAAAAASUVORK5CYII=);
+    background-size: contain;
+    transition: all 0.3s ease-in-out;
+}
+
+.info_lives_heart.full {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAABmJLR0QA/wD/AP+gvaeTAAACGUlEQVRoge3ZO2sUYRSA4SdewHjFBaOYqG0waCURKwWxNCpWEfUfWAqiCP4FW1NY2FiJBDsRbGwMYhAhtbiCJKAbFMRL1GJnZJ1MsjPf7s5MMS+c5jB7vvfszOw3Z5aampqaMhnKcWwD5zGFcYxFn1/EWzzDQ3zsUmcfpnEaExjBHzSxgFk8xuccbusyjFtYjhZaL77jHvak1BnBTHRMtzot3IzW7okxvMqwYDKWcLKjzqkol7fOHEZ7kW8GLNp5Ni7jKn70UOd9SBPDwr75ZPyMotc6c9iSp4HbfVi033Ejq3xDthu26Ghhd1J2Q0oDF7Aza7cFsgvnksm0Bs4O3iWYqWQirYGJAkRCOZxMpO3EX7B98C5BfMWOzkTaGdhUjEsQq3zTGlgqQCSUVW5pDcwXIBLK62QirYHnBYiEksntEFaUv3El45f281kmZisgnIxHWeVhUrXOwgqO5WkA7ldAPI6ZvPKwV/sBqmz5Ze0xNIjpCjRwJVQ+psxLKejSSbIVb0qQn9eHoT5mFO8KlG/iQL/kYybwqQD5Fo72Wz7mhMGOmy0cH5T8oJsoRD5mUtiLqrViUcBO2yvj+nNjf8CRgt3/sV9vP7ELOFi4dYIGXsgv/1L6S+BS2IYnsss/lRjOq8BG7a2/m/wDbC7JsStDuGNt+bvSx9jKcc3/A9FvXC/VKICL+Kb9P8Glkl2CORNFTU1NTTp/AelgsqfONxzsAAAAAElFTkSuQmCC);
+    background-size: contain;
+}
+
+.info_lives_heart.forward {
+    transform: scale(1.1);
+}
+
+.info_lives_heart.backward {
+    transform: scale(0.9);
+}
+
+.info_findings_score {
+    font-size: 30px;
+    display: flex;
+    margin-left: 10px;
+}
+
+.info_sound {
+    width: 35px;
+    height: 35px;
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAAEJ0lEQVR4nO3aSYgdRRjA8d/LmBm3wKgJEyNjXONCBjdUEA/JRU00GjGYqIeAiBgVD8YFJSfXgx7mIoiKihvBFUGjgeCgoqgHITkoMQZR4q7jwiQx28RD9TMzb6rmdb9Zni/pPxTdU1/39331varqqq+GkpKSkpKSkpKSkpKSA5BKE2y2YwEW4xR0oh+f4Q182ASfJoVO3I0t2DtK6cOJTfJxQjgOvfjb6A0fWvpxQTOcHU/OxWrskr/hQ8uvmD3pXo+RKbgc72us0bXl1QK2T8cVmFnE4aKT4OHoQRemDqmfgtOwTJjY8vA7XsFmnI+rEv7MwaY6uu7Hqux+Oy7Dezn9yMU5eBP/GPuvuhErcGiNjeWJ5++o49vxGKx55y/MbbCtw6jgvoiBRkofFgm9JcXnkfeeruPjvIS9L4wMcmF6E8rzlp14HmfntPdsRMeaOu9MEybMmP3enHajLEkozfsZexjHFLT5VETXOzXPzMJNWIqOrG6e+PDcpcGh0CZMTnkbPIjvhF9rOQ5rxKj6ATgDfw6RrccRmWxFwreXG3FkfkLZJlxiHMZWgnoBWB2Rvyv8YMQ/v7txQspgakKaH6nbgYWZwW15WjMBzIjUXYyV2f29EXkbrkspTAXg2EjdJ+p/jyeaVHe+B0fiI6yNyJekFKYCEOviv4zq2uTwhHgQOnFzdh+T92B6TOFo3+T/I3txPX6IyK7Mrmuy54ZSEfYmI2i1AMBWPBqpP0vYB/yEryLyOTFlrRgAQuKklgpOyu5jPWRWTFGrBuBbYdNTS3Xh9WNENi2mqFUDUF181VKti+0qa+cFtG4ApouvNn/LrrGcwEBMUasG4KJE/ebsGhvvW2IvtGIAKrg9Ur9R2I/MFJ/xo4u4VgzAXUKCppa3sutCI+eAQSHtPoJUAGIzbKFc2wTRI6S/atlh395/aUS+XtiijyAVgNh39Dz5830TxSLDc5FVHhfG+IXi80MyuZoKwAeRug68LZzqNLrfHys/R+o2CJuhCh6KyHfjxaKGOvC9/AmRPUKv6cNtOKqowYx6+YCDhbFclW3ByZnsloRvLzXoixsSCvOUrXjMvqVpXvKkxNqFjc81wi6QkL+IpcR24tSCPvxHBS9ElBYpe/C6/Mdcz0R01EuKduOPhP1HctpN0i7swccShGr5WDj8aJPm08h7z9Xx8c6EvQ3CkBkXFiSca6R8jVuNnEiXJZ5fZXRWRt7pl7PrFz0amy3su7sNzxpNFXL/lwq9Jg/9wuxcPRq7Wrx3nCl8x1N0ZfKu7O9tQuK2Kf9ncDQekD6oKFrW5bTbjQeFMd/stQo4BDcKx1ONNn7AOJ3vNZOK0B3XKna+uF046t6vmIsnhcaN1vgvhTlhv2WGsFpcJ6zkBvANXsO1OKh5rpWUlJSUlJSUlJSUlBwg/AtTUATqktoOTAAAAABJRU5ErkJggg==);
+    background-size: contain;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.info_sound.off {
+    background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAABACAYAAACqaXHeAAAABmJLR0QA/wD/AP+gvaeTAAADwElEQVR4nO3byYseRRjH8U/GyQzGBQQhDoKg4k0jzFESXOJC3OKCOi4XD6JeFP0L1JNXBTcQFFfcHQ9RUHLzlIOiYqJCRFRyGRNkso4m4+GZF8d3qju9vd3vjO8XCl6qp6qe59dPV1c91cOIESNG/I9Zl3NtEx5c+v0Svhm8OcPDpTiKxaVyDDd3alHLPO9f59e0CGMZ9YuJugm8Zw2KkGKTuOP9UbAoHo1t3ZnWHtf77zzQ/zjc2J1p7XEyEW7ozrT2yBPh6NL1Nc922XPCYWxteLyz8RA+w8/Yjz14EzfJX78MjDwRDuHKBsa4SLyCD2WM0ytf4+IGxitNnggHcXnFfjfjIxzP6DtV/sTVFcerxTbZc0KZSBgT4fxlRl9FygGc14BPpcmLhHlxR7M4HY9gb0b7smW2jiN1JpPteFesEPuZx+MiTHuMYwtmcFbBMebwFn7CZbjLytXrCVyAX4oa3iR5kVCn7BY70Q19492d8fePDsi/QtyRYVSV8oVYXOVF5q5Eu2cb9qkwYyJE6zh9DK+KLXgRXkv08X5VB8arNlziARGWVZgTiZbnsK9Eu+OJuspzWR0BJvFkyTZzYnW3Ax/jSI3xGyErH1CEa7AxUf8tFjLanIG3l0rnzlNPgC2JugO4QkyMKREm8aEh2kDVEeDcRN1OsXH5BHdaBSLUEeDURN38st+zuEXM8v1MirV/5+m1OgIU4VPcKi3CUOQYBy0AQy5CGwIwxCK0JQBDKkKbAjCEIrQtAEMmQhcCMEQidCUAQyJClwIQItymQxHqCHA4UTdVoZ8dItWVWjZPiLTbwJbNdQT4NVG3GedX6GvWKtk7LGerdIZnD661Mp9XhLwcY+8Y7pXEtQ9q+FGZceVS2yfwmwj5+0V6PMXJRPg+Ud+JAETYVs0F7sfT0tvqstnmzgSAZzKMKloW8Dqm+/otI0LlpGgTrMNTyp3rZZWd4risNzkXFeGFwbpYjGmR5DiivhA/iOPxDYqJ0PucrzSDOGc/DZfgHKxfVn+KONKewYUF+/oDb4hXa96C6GG8WNrSjuidCn+ufqT0yt+4r00nmmJanPQsaEaEe9s1vzmm8IR4NdYV4Z6WbW+UM/GY+C4oz9Hv8GPGtb/EucSqZhzXidfbLvFW+Aoviy30mIia3bJFuL11qztgo4iGrMdhpjvT2mMkgnwRFsQJ1Zonb05Y1a/IMuSJ8E6qQdc5wabZh6tEUqaf31u2pVOmxP849e7+XrE3WUEnHx23xHqRmpsQ+46D3ZozYsSIEUPIP+kRRYcBA/VSAAAAAElFTkSuQmCC);
+    background-size: contain;
+}
+
+.game_container {
+    width: 100%;
+    position: relative;
+    background-color: sienna;
+    padding-bottom: 50px;
+}
+
+.game_content {
+    display: none;
+    position: relative;
+    margin: 0 120px;
+    width: 1600px;
+    padding-top: 50px;
+    background-color: brown;
+}
+
+.game_content.active {
+    display: flex;
+}
+
+.game_content--movies {
+    background-color: crimson;
+}
+
+.game_content--series {
+    background-color: cadetblue;
+}
+
+/*.game_content--videogames {
+    background: url() top center no-repeat;
+    background-size: contain;
+    background-color: chocolate;
+    flex-shrink: 0;
+}*/
+
+.game_content--videogames img {
+    min-height: 900px;
+}
+
+.game_dialog {
+    opacity: 0;
+    background-color: black;
+    color: white;
+    border: 1px dashed white;
+    position: absolute;
+    top: calc(50% - 135px);
+    left: calc(50% - 270px);
+    width: 500px;
+    height: 270px;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    border-radius: 20px;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in-out;
+    padding: 20px;
+    z-index: 5;
+}
+
+.game_dialog.active {
+    display: flex;
+    opacity: 1;
+    pointer-events: visible;
+}
+
+.game_dialog_bg {
+    position: absolute;
+    width: 100%;
+    height: calc(100% - 50px);
+    background-color: black;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out;
+}
+
+.game_dialog_bg.active{
+    opacity: 0.5;
+    z-index: 1;
+    cursor: pointer;
+}
+
+.game_dialog_title {
+    font-size: 30px;
+    margin: 20px 40px;
+}
+
+.game_dialog_title.anim {
+    animation: title 0.3s ease-in-out;
+}
+
+.game_dialog_input {
+    text-align: center;
+    padding: 10px;
+    background-color: black;
+    color: white;
+    border: 1px solid white;
+    border-radius: 15px;
+}
+
+.game_dialog_input.shake {
+    animation: error 0.3s ease-in-out forwards;
+}
+
+.game_dialog_close {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+}
+
+.game_dialog_guess {
+    margin: 20px 0;
+}
+
+.game_dialog_text {
+    padding: 0 20px;
+}
+
+.game_victory {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: black;
+    color: white;
+    position: absolute;
+    top: calc(50% - 250px);
+    left: calc(50% - 250px);
+    border-radius: 50%;
+    z-index: 10;
+    font-size: 40px;
+    border: 2px solid white;
+    width: 500px;
+    height: 500px;
+    overflow: hidden;
+    transform: scale(0);
+}
+
+.game_victory p {
+    padding: 10px 50px;
+    font-size: 15px;
+}
+
+.game_victory .game_btn {
+    align-self: center;
+}
+
+.game_victory.active {
+    animation: victory 1s ease-in-out forwards;
+}
+
+.game_victory_gif {
+    height: 150px;
+    margin: 15px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.game_victory_gif img {
+    min-height: 100%;
+    object-fit: contain;
+}
+
+.sound {
+    display: none;
+}
+
+@keyframes title {
+    00% {
+        transform: scale(3);
+    }
+    
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes victory {
+    40% {
+        transform: scale(1.2);
+    }
+
+    60% {
+        transform: scale(0.8);
+    }
+
+    80% {
+        transform: scale(1.1);
+    }
+    
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes error {
+    20% {
+        transform: translateX(-2px);
+    }
+
+    40% {
+        transform: translateX(2px);
+    }
+
+    60% {
+        transform: translateX(-2px);
+    }
+
+    80% {
+        transform: translateX(2px);
+    }
+    
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.object {
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+}
+
+.object.found {
+    cursor: pointer;
+}
+
+.object::before {
+    content: "";
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    background-color: white;
+    opacity: 0;
+    transition: opacity 0.7s ease-in-out;
+}
+
+.object.found::before {
+    opacity: 1;
+}
+
+.object--movies[data-id="1"] {
+    top: 950px;
+    left: 1240px;
+    height: 68px;
+    width: 67px;
+}
+
+.object--movies[data-id="2"] {
+    top: 994px;
+    left: 980px;
+    height: 51px;
+    width: 79px;
+}
+
+.object--movies[data-id="3"] {
+    top: 1283px;
+    left: 561px;
+    height: 39px;
+    width: 46px;
+}
+
+.object--movies[data-id="4"] {
+    top: 1101px;
+    left: 343px;
+    height: 114px;
+    width: 141px;
+    transform: rotate(-7deg);
+    border-radius: 0;
+}
+
+.object--movies[data-id="5"] {
+    top: 411px;
+    left: 1133px;
+    height: 136px;
+    width: 61px;
+    border-radius: 0;
+    transform: rotate(-17deg) skew(-15deg);
+}
+
+.object--movies[data-id="6"] {
+    top: 337px;
+    left: 1373px;
+    height: 132px;
+    width: 230px;
+    border-radius: 0;
+    transform: rotate(-15deg) skew(-15deg);
+}
+
+.object--movies[data-id="7"] {
+    top: 999px;
+    left: 1121px;
+    height: 14px;
+    width: 32px;
+}
+
+.object--movies[data-id="8"] {
+    top: 266px;
+    left: 892px;
+    height: 96px;
+    width: 66px;
+}
+
+.object--movies[data-id="9"] {
+    top: 744px;
+    left: 1434px;
+    height: 348px;
+    width: 36px;
+    transform: rotate(6deg);
+}
+
+.object--movies[data-id="10"] {
+    top: 379px;
+    left: 615px;
+    height: 54px;
+    width: 21px;
+}
+
+.object--movies[data-id="11"] {
+    top: 1148px;
+    left: 1350px;
+    height: 80px;
+    width: 77px;
+}
+
+.object--movies[data-id="12"] {
+    top: 46px;
+    left: 1389px;
+    height: 92px;
+    width: 92px;
+}
+
+.object--movies[data-id="13"] {
+    top: 744px;
+    left: 914px;
+    height: 51px;
+    width: 51px;
+}
+
+.object--movies[data-id="14"] {
+    top: 178px;
+    left: 443px;
+    height: 143px;
+    width: 155px;
+}
+
+.object--movies[data-id="15"] {
+    top: 959px;
+    left: 37px;
+    height: 81px;
+    width: 46px;
+}
+
+.object--movies[data-id="16"] {
+    top: 290px;
+    left: 1201px;
+    height: 99px;
+    width: 126px;
+    border-radius: 0;
+    transform: rotate(-8deg) skew(0deg, -15deg);
+}
+
+.object--movies[data-id="17"] {
+    top: 881px;
+    left: 818px;
+    height: 62px;
+    width: 87px;
+}
+
+.object--movies[data-id="18"] {
+    top: 694px;
+    left: 134px;
+    height: 73px;
+    width: 22px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="19"] {
+    top: 701px;
+    left: 207px;
+    height: 50px;
+    width: 77px;
+}
+
+.object--movies[data-id="20"] {
+    top: 723px;
+    left: 1104px;
+    height: 105px;
+    width: 82px;
+}
+
+.object--movies[data-id="21"] {
+    top: 765px;
+    left: 747px;
+    height: 84px;
+    width: 77px;
+}
+
+.object--movies[data-id="22"] {
+    top: 805px;
+    left: 255px;
+    height: 108px;
+    width: 106px;
+}
+
+.object--movies[data-id="23"] {
+    top: 759px;
+    left: 1317px;
+    height: 57px;
+    width: 35px;
+}
+
+.object--movies[data-id="24"] {
+    top: 306px;
+    left: 107px;
+    height: 52px;
+    width: 109px;
+    transform: rotate(60deg);
+}
+
+.object--movies[data-id="25"] {
+    top: 1258px;
+    left: 1103px;
+    height: 57px;
+    width: 69px;
+}
+
+.object--movies[data-id="26"] {
+    top: 427px;
+    left: 1214px;
+    height: 127px;
+    width: 120px;
+    border-radius: 0;
+    transform: skew(0deg, -15deg);
+}
+
+.object--movies[data-id="27"] {
+    top: 1093px;
+    left: 1496px;
+    height: 107px;
+    width: 104px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+.object--movies[data-id="28"] {
+    top: 1215px;
+    left: 167px;
+    height: 67px;
+    width: 107px;
+}
+
+.object--movies[data-id="29"] {
+    top: 735px;
+    left: 50px;
+    height: 47px;
+    width: 66px;
+}
+
+.object--movies[data-id="30"] {
+    top: 522px;
+    left: 78px;
+    height: 124px;
+    width: 82px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="31"] {
+    top: 708px;
+    left: 647px;
+    height: 110px;
+    width: 101px;
+}
+
+.object--movies[data-id="32"] {
+    top: 353px;
+    left: 1068px;
+    height: 103px;
+    width: 43px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="33"] {
+    top: 816px;
+    left: 145px;
+    height: 93px;
+    width: 25px;
+    transform: rotate(-5deg);
+}
+
+.object--movies[data-id="34"] {
+    top: 468px;
+    left: 1068px;
+    height: 81px;
+    width: 51px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="35"] {
+    top: 727px;
+    left: 1189px;
+    height: 76px;
+    width: 79px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="36"] {
+    top: 57px;
+    left: 659px;
+    height: 74px;
+    width: 52px;
+}
+
+.object--movies[data-id="37"] {
+    top: 226px;
+    left: 1092px;
+    height: 86px;
+    width: 83px;
+}
+
+.object--movies[data-id="38"] {
+    top: 690px;
+    left: 479px;
+    height: 72px;
+    width: 62px;
+}
+
+.object--movies[data-id="39"] {
+    top: 104px;
+    left: 161px;
+    height: 105px;
+    width: 59px;
+    transform: rotate(10deg);
+}
+
+.object--movies[data-id="40"] {
+    top: 1104px;
+    left: 924px;
+    height: 107px;
+    width: 71px;
+}
+
+.object--movies[data-id="41"] {
+    top: 210px;
+    left: 736px;
+    height: 55px;
+    width: 80px;
+}
+
+.object--movies[data-id="42"] {
+    top: 953px;
+    left: 827px;
+    height: 37px;
+    width: 24px;
+}
+
+.object--movies[data-id="43"] {
+    top: 845px;
+    left: 600px;
+    height: 85px;
+    width: 123px;
+    transform: rotate(-15deg);
+}
+
+.object--movies[data-id="44"] {
+    top: 832px;
+    left: 1291px;
+    height: 42px;
+    width: 126px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="45"] {
+    top: 552px;
+    left: 203px;
+    height: 83px;
+    width: 24px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="46"] {
+    top: 441px;
+    left: 434px;
+    height: 173px;
+    width: 174px;
+}
+
+.object--movies[data-id="47"] {
+    top: 235px;
+    left: 47px;
+    height: 253px;
+    width: 56px;
+    border-radius: 0;
+    transform: rotate(11deg);
+}
+
+.object--movies[data-id="48"] {
+    top: 652px;
+    left: 1314px;
+    height: 84px;
+    width: 32px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="49"] {
+    top: 531px;
+    left: 940px;
+    height: 86px;
+    width: 98px;
+}
+
+.object--movies[data-id="50"] {
+    top: 1069px;
+    left: 706px;
+    height: 49px;
+    width: 64px;
+    transform: rotate(-10deg);
+}
+
+.object--movies[data-id="51"] {
+    top: 883px;
+    left: 363px;
+    height: 45px;
+    width: 233px;
+    transform: rotate(-5deg);
+}
+
+.object--movies[data-id="52"] {
+    top: 896px;
+    left: 1069px;
+    height: 50px;
+    width: 48px;
+}
+
+.object--movies[data-id="53"] {
+    top: 942px;
+    left: 442px;
+    height: 69px;
+    width: 94px;
+}
+
+.object--movies[data-id="54"] {
+    top: 806px;
+    left: 1495px;
+    height: 72px;
+    width: 69px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="55"] {
+    top: 184px;
+    left: 265px;
+    height: 110px;
+    width: 145px;
+}
+
+.object--movies[data-id="56"] {
+    top: 616px;
+    left: 1495px;
+    height: 170px;
+    width: 94px;
+    border-radius: 0;
+}
+
+.object--movies[data-id="57"] {
+    top: 217px;
+    left: 1358px;
+    height: 93px;
+    width: 115px;
+    border-radius: 0;
+    transform: rotate(-22deg) skew(-15deg);
+}
+
+.object--movies[data-id="58"] {
+    top: 151px;
+    left: 1505px;
+    height: 128px;
+    width: 97px;
+    border-radius: 0;
+    transform: rotate(-15deg) skew(-15deg);
+}
+
+.object--movies[data-id="59"] {
+    top: 1236px;
+    left: 1198px;
+    height: 25px;
+    width: 131px;
+    transform: rotate(20deg);
+}
+
+.object--movies[data-id="60"] {
+    top: 644px;
+    left: 764px;
+    height: 95px;
+    width: 69px;
+}
+
+.object--series {
+    background-color: blue;
+    opacity: 0.5;
+}
+
+.object--series[data-id="2"] {
+    left: 250px;
+}
+
+.object--videogames[data-id="1"] {
+    top: 419px;
+    left: 94px;
+    height: 45px;
+    width: 45px;
+}
+
+.object--videogames[data-id="2"] {
+    top: 620px;
+    left: 16px;
+    height: 154px;
+    width: 103px;
+}
+
+.object--videogames[data-id="3"] {
+    top: 803px;
+    left: 18px;
+    height: 123px;
+    width: 159px;
+}
+
+.object--videogames[data-id="4"] {
+    top: 403px;
+    left: 203px;
+    height: 322px;
+    width: 23px;
+    transform: rotate(4deg);
+}
+
+.object--videogames[data-id="5"] {
+    top: 532px;
+    left: 268px;
+    height: 157px;
+    width: 115px;
+}
+
+.object--videogames[data-id="6"] {
+    left: 225px;
+    width: 75px;
+    transform: rotate(44deg);
+}
+
+.object--videogames[data-id="7"] {
+    top: 534px;
+    left: 458px;
+    height: 117px;
+    width: 52px;
+}
+
+.object--videogames[data-id="8"] {
+    top: 705px;
+    left: 574px;
+    height: 89px;
+    width: 35px;
+}
+
+.object--videogames[data-id="9"] {
+    top: 228px;
+    left: 527px;
+    height: 59px;
+    width: 58px;
+}
+
+.object--videogames[data-id="10"] {
+    top: 544px;
+    left: 686px;
+    height: 195px;
+    width: 53px;
+}
+
+.object--videogames[data-id="11"] {
+    top: 488px;
+    left: 741px;
+    height: 66px;
+    width: 53px;
+}
+
+.object--videogames[data-id="12"] {
+    top: 615px;
+    left: 794px;
+    height: 57px;
+    width: 55px;
+}
+
+.object--videogames[data-id="13"] {
+    top: 374px;
+    left: 848px;
+    height: 57px;
+    width: 55px;
+}
+
+.object--videogames[data-id="14"] {
+    top: 622px;
+    left: 1013px;
+    height: 138px;
+    width: 125px;
+}
+
+.object--videogames[data-id="15"] {
+    top: 498px;
+    left: 1089px;
+    height: 127px;
+    width: 107px;
+}
+
+.object--videogames[data-id="16"] {
+    top: 430px;
+    left: 991px;
+    height: 116px;
+    width: 79px;
+}
+
+.object--videogames[data-id="17"] {
+    top: 537px;
+    left: 925px;
+    height: 34px;
+    width: 51px;
+}
+
+.object--videogames[data-id="18"] {
+    top: 742px;
+    left: 763px;
+    height: 35px;
+    width: 61px;
+}
+
+.object--videogames[data-id="19"] {
+    top: 817px;
+    left: 1229px;
+    height: 46px;
+    width: 183px;
+    transform: rotate(35deg);
+}
+
+.object--videogames[data-id="20"] {
+    top: 385px;
+    left: 1286px;
+    height: 149px;
+    width: 90px;
+}
+
+.object--videogames[data-id="21"] {
+    top: 446px;
+    left: 1506px;
+    height: 135px;
+    width: 88px;
+}
+
+.object--videogames[data-id="22"] {
+    top: 761px;
+    left: 1444px;
+    height: 94px;
+    width: 124px;
+}
+
+.object--videogames[data-id="23"] {
+    top: 303px;
+    left: 954px;
+    height: 45px;
+    width: 160px;
+}
+
+.object--videogames[data-id="24"] {
+    top: 308px;
+    left: 698px;
+    height: 29px;
+    width: 115px;
+}
+
+.object--videogames[data-id="25"] {
+    top: 118px;
+    left: 755px;
+    height: 74px;
+    width: 72px;
+}
+
+.object--videogames[data-id="26"] {
+    top: 108px;
+    left: 976px;
+    height: 74px;
+    width: 72px;
+}
+
+.object--videogames[data-id="27"] {
+    top: 181px;
+    left: 849px;
+    height: 30px;
+    width: 98px;
+    transform: rotate(10deg);
+}
+
+.object--videogames[data-id="28"] {
+    top: 399px;
+    left: 626px;
+    height: 203px;
+    width: 38px;
+    transform: rotate(-5deg);
+}
+
+.object--videogames[data-id="29"] {
+    top: 680px;
+    left: 1363px;
+    height: 79px;
+    width: 94px;
+}
+
+.object--videogames[data-id="30"] {
+    top: 146px;
+    left: 349px;
+    height: 80px;
+    width: 81px;
+}
+
+.object--videogames[data-id="31"] {
+    top: 569px;
+    left: 138px;
+    height: 34px;
+    width: 49px;
+}
+
+.object--videogames[data-id="32"] {
+    top: 533px;
+    left: 825px;
+    height: 29px;
+    width: 69px;
+}
+
+.object--videogames[data-id="33"] {
+    top: 411px;
+    left: 546px;
+    height: 189px;
+    width: 44px;
+    transform: rotate(5deg);
+}
+
+.object--videogames[data-id="34"] {
+    top: 384px;
+    left: 391px;
+    height: 97px;
+    width: 50px;
+}
+
+.object--videogames[data-id="35"] {
+    top: 192px;
+    left: 1203px;
+    height: 135px;
+    width: 109px;
+}
+
+.active {
+    opacity: 1;
+}
