@@ -13,17 +13,14 @@
         <nav class="nav">
             <div class="nav__menu">
                 <ul class="menu">
-                    <li class="menu__item">
-                        <a class="menu__item-link" href="#home">Accueil</a>
-                        <div class="menu__item-dot"></div>
+                    <li class="menu__item" data-anchor="dev">
+                        Développement
                     </li>
-                    <li class="menu__item">
-                        <a class="menu__item-link" href="#gallery">Galerie</a>
-                        <div class="menu__item-dot"></div>
+                    <li class="menu__item" data-anchor="gal">
+                        Dessin
                     </li>
-                    <li class="menu__item">
-                        <a class="menu__item-link" href="#contact">Contact</a>
-                        <div class="menu__item-dot"></div>
+                    <li class="menu__item" data-anchor="contact">
+                        Contact
                     </li>
                 </ul>
             </div>
@@ -37,15 +34,24 @@
                 <div class="header__text">
                     <h1 class="header__title">Portfolio</h1>
                     <h2 class="header__subtitle">Théo Louvat</h2>
-                    <button class="btn">
-                        <a href="#contact">Me contacter</a>
+                    <button class="btn" data-target="contact">
+                        Me contacter
                     </button>
                 </div>
                 <img class="header__image" src="images/DSC_0048 i.jpg" />
             </article>
         </section>
 
-        <div class="body" id="gallery" >
+        <div class="body" data-target="dev" >
+            <section class="main">
+                <div class="main__title">
+                    <h3 class="main__title-text">Développement</h3>
+                </div>
+              
+            </section>
+        </div>
+
+        <div class="body" data-target="gal" >
             <section class="main">
                 <div class="main__title">
                     <h3 class="main__title-text">Galerie</h3>
@@ -55,15 +61,10 @@
                         <img class="gallery__item__img" src="images/mayafull.jpg" />
                     </div>
                     <div class="gallery__item">
-                        <img class="gallery__item__img" src="images/mayafull.jpg" />
+                        <img class="gallery__item__img" src="images/Yuria.jpg" />
                     </div>
                     <div class="gallery__item">
-                        <img class="gallery__item__img" src="images/mayafull.jpg" />
-                    </div>
-                </article>
-                <article class="gallery">
-                    <div class="gallery__item">
-                        <img class="gallery__item__img" src="images/mayafull.jpg" />
+                        <img class="gallery__item__img" src="images/Lilith2.jpg" />
                     </div>
                     <div class="gallery__item">
                         <img class="gallery__item__img" src="images/mayafull.jpg" />
@@ -71,8 +72,9 @@
                     <div class="gallery__item">
                         <img class="gallery__item__img" src="images/mayafull.jpg" />
                     </div>
-                </article>
-                <article class="gallery">
+                    <div class="gallery__item">
+                        <img class="gallery__item__img" src="images/mayafull.jpg" />
+                    </div>
                     <div class="gallery__item">
                         <img class="gallery__item__img" src="images/mayafull.jpg" />
                     </div>
@@ -88,7 +90,7 @@
                     
         <div class="background">
             <div class="body">
-                <section id="contact" class="contact">
+                <section class="contact" data-target="contact">
                     <article class="contact__box">
                         <h3 class="contact__box-title">Lorem ipsum</h3>
                         <h4 class="contact__box-subtitle">Lorem ipsum dolor sit amet. Eos quis fuga qui accusamus aperiam non earum ?</h4>
@@ -144,4 +146,6 @@
         </div>
     </footer>
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="js/script.js"></script>
 </html>
