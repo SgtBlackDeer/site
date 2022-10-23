@@ -13,6 +13,14 @@ $(document).ready(function () {
     var soundOn = true;
     var closeTO;
 
+    function onLoad() {
+        document.addEventListener("deviceready", onDeviceReady, false);
+    }
+
+    function onDeviceReady() {
+        document.addEventListener("backbutton", onBackKeyDown, false);
+    }
+
     $('.game_menu_item--i div').click(function () {
         $(this).text() == 'X' ? $(this).text("i") : $(this).text("X");
         $('.game_menu_item--rules').toggleClass('display');
@@ -569,6 +577,12 @@ $(document).ready(function () {
 
     if ($('.game-dialog').hasClass('active')) {
         $('.game_dialog_input').focus();
+    }
+      
+    function onBackKeyDown() {
+        $('.game_dialog').removeClass('active');
+        $('.game_dialog_bg').removeClass('active');
+        clearTimeout(closeTO);
     }
 
     $('.game_dialog_bg, .game_dialog_close').click(function () {

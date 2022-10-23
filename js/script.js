@@ -4,4 +4,9 @@ $(document).ready(() => {
             scrollTop: $('[data-target=' + $(this).attr('data-anchor') + ']').offset().top - 30
         }, 'slow');
     });
+
+    $('.gallery__item').click(function () {
+        $('.gallery__item').removeClass('active');
+        $(this).addClass('active');
+    });
 });
