@@ -21,8 +21,8 @@ $(document).ready(function () {
         document.addEventListener("backbutton", onBackKeyDown, false);
     }
 
-    $('.game_menu_item--i div').click(function () {
-        $(this).text() == 'X' ? $(this).text("i") : $(this).text("X");
+    $('.game_menu_item--i').click(function () {
+        $("a", this).text() == 'X' ? $("a", this).text("i") : $("a", this).text("X");
         $('.game_menu_item--rules').toggleClass('display');
     });
 

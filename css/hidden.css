@@ -74,23 +74,25 @@
 .game_menu_item--i {
     display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 20px;
+    cursor: pointer;
 }
 
-.game_menu_item--i div {
+.game_menu_item--i a {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 30px;
     height: 30px;
+    margin-right: 10px;
     border-radius: 50%;
     background-color: coral;
     color: white;
     font-weight: 600;
-    cursor: pointer;
 }
 
-.game_menu_item--i div:hover {
+.game_menu_item--i a:hover {
     background-color: brown;
 }
 
