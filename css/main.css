@@ -329,14 +329,19 @@ body {
 
 .projects {
     display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
     padding: 20px 0;
 }
 
 .project, .project:visited {
     display: flex;
-    padding: 10px;
+    width: 40%;
+    margin: 10px;
+    padding: 15px;
     cursor: pointer;
     color: #337cbd;
+    background-color: #8ed2fc;
     transition: all 0.2s ease-in-out;
 }
 
@@ -346,11 +351,14 @@ body {
 }
 
 .project img {
-    width: 200px;
-    height: 200px;
-    border-radius: 20px;
+    width: 100%;
+    height: 250px;
     object-fit: cover;
     overflow: hidden;
+}
+
+.project h4 {
+    margin-top: 15px;
 }
 
 .main__title-text {
@@ -372,14 +380,10 @@ body {
     display: flex;
     justify-content: center;
     width: 30%;
+    height: 500px;
     margin: 10px;
     overflow: hidden;
-    max-height: 500px;
     cursor: pointer;
-}
-
-.gallery__item.active {
-    transform: scale(1.10);
 }
 
 .gallery__item__text {
@@ -394,7 +398,7 @@ body {
     transition: transform 0.5s ease-in-out;
 }
 
-.gallery__item__text h4 {
+.gallery__item__text h4, .fancybox__caption h4 {
     font-size: 20px;
     text-align: center;
     margin-bottom: 10px;

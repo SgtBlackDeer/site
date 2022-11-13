@@ -5,8 +5,5 @@ $(document).ready(() => {
         }, 'slow');
     });
 
-    // $('.gallery__item').click(function () {
-    //     $('.gallery__item').removeClass('active');
-    //     $(this).addClass('active');
-    // });
+    Fancybox.bind(".gallery__item");
 });
