@@ -71,10 +71,18 @@ body {
     z-index: 200;
 }
 
+.btns {
+    display: flex;
+}
+
+.btns .btn + .btn {
+    margin-left: 15px;
+}
+
 .btn {
     height: 54px;
     width: 205px;
-    background-color: #337cbd;
+    background-color: #8ed2fc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -86,9 +94,9 @@ body {
     color: #FFFFFF;
 }
 
-.btn:hover, .btn a:hover {
-    color: #337cbd;
-    background-color: #FFFFFF;
+.btn:hover, .btn a:hover, .btn.active {
+    color: #FFFFFF;
+    background-color: #337cbd;
 }
 
 .btn--alt {
@@ -309,6 +317,8 @@ body {
 }
 
 .main {
+    width: 100%;
+    min-height: 1200px;
 }
 
 .main__title {
@@ -317,31 +327,69 @@ body {
 }
 
 .main__title::before {
-    content:  url("../icons/Carré_point.svg");
+    content:  '';
     position: absolute;
     left: 0;
     top: 0;
-    width: 89px;
+    width: 50px;
+    height: 50px;
     color: #000000;
-    opacity: 0.03;
-    background-color: red;
+    opacity: 0.5;
+    background-color: #337cbd;
+}
+
+.main__title::after {
+    content:  '';
+    position: absolute;
+    left: 0;
+    top: 50px;
+    height : 0;
+    width : 0;
+    opacity: 0.5;
+    border-right : 25px solid #337cbd;
+    border-bottom : 25px solid transparent;
+    border-left : 25px solid #337cbd;
+}
+
+.projects__container {
+    position: relative;
 }
 
 .projects {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
+    width: 100%;
     padding: 20px 0;
+    opacity: 0;
+    transform: translateX(-80%);
+    transition: all 0.5s ease-in-out;
+    pointer-events: none;
+}
+
+.projects.active {
+    opacity: 1;
+    transform: translateX(0);
+    pointer-events: all;
+}
+
+.projects--perso  {
+    transform: translateX(80%);
 }
 
 .project, .project:visited {
     display: flex;
-    width: 40%;
+    width: 100%;
+    max-width: 40%;
     margin: 10px;
     padding: 15px;
     cursor: pointer;
     color: #337cbd;
     background-color: #8ed2fc;
+    border-radius: 5px;
     transition: all 0.2s ease-in-out;
 }
 
@@ -494,11 +542,8 @@ body {
 }
 
 .contact {
-    color: #353535;
-    margin: 139px 0;
     width: 100%;
-    display: flex;
-    align-items: center;
+    color: #353535;
 }
 
 .contact__img {
@@ -506,7 +551,7 @@ body {
 }
 
 .contact__box {
-    margin-top: 170px;
+    margin-top: 50px;
     width: 50%;
     background-color: #FFFFFF;
     box-shadow: 0 0 65px 0 rgba(0,0,0,0.15);

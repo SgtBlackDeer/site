@@ -5,5 +5,12 @@ $(document).ready(() => {
         }, 'slow');
     });
 
+    $('[data-project]').click(function() {
+        $('[data-project]').removeClass('active');
+        $(this).addClass('active');
+        $('.projects').removeClass('active');
+        $('.projects--' + $(this).attr('data-project')).addClass('active');
+    });
+
     Fancybox.bind(".gallery__item");
 });

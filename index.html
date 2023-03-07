@@ -33,7 +33,8 @@
                 <div class="header__text">
                     <h1 class="header__title">Portfolio</h1>
                     <h2 class="header__subtitle">Théo Louvat</h2>
-                    <button class="btn" data-anchor="contact">
+                    <h2 class="header__subtitle">Développeur Front / Intégrateur CSS</h2>
+                    <button class="btn btn--alt" data-anchor="contact">
                         Me contacter
                     </button>
                 </div>
@@ -46,31 +47,40 @@
                 <div class="main__title">
                     <h3 class="main__title-text">Développement</h3>
                 </div>
-                professionnel / personnel
-                <article class="projects">
-                    <a href="https://www.abc-mobilite.com/" class="project" target="_blank">
-                        <img src="images/taxis.png" alt="">
-                        <h4>ABC Mobilité</h4>
-                    </a>
-                    <a href="https://www.lacoopbio.com/" class="project" target="_blank">
-                        <img src="images/coopbio.png" alt="">
-                        <h4>Coop Bio</h4>
-                    </a>
-                    <a href="https://www.fishingtreuilnocopy.fr/" class="project" target="_blank">
-                        <img src="images/fishing.png" alt="">
-                        <h4>Fishing Treuil</h4>
-                    </a>
-                    <a href="https://www.les-huitres-de-cancale.fr/" class="project" target="_blank">
-                        <img src="images/viviers.png" alt="">
-                        <h4>Les Viviers de la Houle</h4>
-                    </a>
-                </article>
-                <article class="projects">
-                    <a href="games.html" class="project" target="_blank">
-                        <img src="images/fond-videogames.png" alt="">
-                        <h4>Jeux des références cachées</h4>
-                    </a>
-                </article>
+                <div class="btns">
+                    <button class="btn" data-project="pro">Professionnel</button>
+                    <button class="btn" data-project="perso">Personnel</button>
+                </div>
+                <div class="projects__container">
+                    <article class="projects projects--pro active">
+                        <a href="https://www.abc-mobilite.com/" class="project" target="_blank">
+                            <img src="images/taxis.png" alt="">
+                            <h4>ABC Mobilité</h4>
+                        </a>
+                        <a href="https://www.lacoopbio.com/" class="project" target="_blank">
+                            <img src="images/coopbio.png" alt="">
+                            <h4>Coop Bio</h4>
+                        </a>
+                        <a href="https://www.fishingtreuilnocopy.fr/" class="project" target="_blank">
+                            <img src="images/fishing.png" alt="">
+                            <h4>Fishing Treuil</h4>
+                        </a>
+                        <a href="https://www.les-huitres-de-cancale.fr/" class="project" target="_blank">
+                            <img src="images/viviers.png" alt="">
+                            <h4>Les Viviers de la Houle</h4>
+                        </a>
+                        <a href="https://www.huitres-emeraude.com/" class="project" target="_blank">
+                            <img src="images/huitres.png" alt="">
+                            <h4>Huîtres Emeraude</h4>
+                        </a>
+                    </article>
+                    <article class="projects projects--perso">
+                        <a href="games.html" class="project" target="_blank">
+                            <img src="images/fond-videogames.png" alt="">
+                            <h4>Jeux des références cachées</h4>
+                        </a>
+                    </article>
+                </div>
             </section>
         </div>
 
@@ -176,6 +186,9 @@
         <div class="background">
             <div class="body">
                 <section class="contact" data-target="contact">
+                    <div class="main__title">
+                        <h3 class="main__title-text">Contact</h3>
+                    </div>
                     <article class="contact__box">
                         <h3 class="contact__box-title">Lorem ipsum</h3>
                         <h4 class="contact__box-subtitle">Lorem ipsum dolor sit amet. Eos quis fuga qui accusamus aperiam non earum ?</h4>

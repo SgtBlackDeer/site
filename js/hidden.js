@@ -49,6 +49,7 @@ $(document).ready(function () {
         }
 
         if (soundOn == true && $('#music_' + theme)[0] !== undefined) {
+            $('#music_' + theme)[0].volume = 0.5;
             $('#music_' + theme)[0].play();
             $('#music_' + theme)[0].loop = true;
         }
