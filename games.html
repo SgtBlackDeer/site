@@ -6,15 +6,49 @@
     
     <link href="css/main.css" rel="stylesheet" />
     <link href="css/hidden.css" rel="stylesheet" />
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script src="js/hidden.js"></script>
 </head>
-<body onload="onLoad()">
+<body>
     <main>
         <section class="game">
-            <article class="game_container">
+            <article class="game_home game_home--active">
+                <ul class="game_menu_items">
+                    <li class="game_menu_item game_menu_item--title">
+                        Le jeu des références cachées
+                    </li>
+                    <li class="game_menu_item game_menu_item--i">
+                        <a>
+                            i
+                        </a>
+                        Règles et infos
+                    </li>
+                    <li class="game_menu_item game_menu_item--rules">
+                        <p>Je vous propose un petit jeu où il vous faut trouver, cachées au sein d'une image, des références qui me sont chères.</p>
+                        <p>Attention ! Chaque mauvaise réponse vous enlève une vie et vous n'en avez que 5 !</p>
+                        <p>Heureusement, vous pouvez en gagner en marquant des points !</p>
+                    </li>
+                    <li class="game_menu_item game_menu_item--subtitle">
+                        Sélectionnez votre thème :
+                    </li>
+                    <li class="game_menu_item" data-theme-btn="videogames">
+                        <button class="game_btn">Jeux vidéo</button>
+                    </li>
+                    <li class="game_menu_item" data-theme-btn="movies">
+                        <button class="game_btn">Films</button>
+                    </li>
+                    <!--<li class="game_menu_item" data-theme-btn="series">
+                        <button class="game_btn">Séries & animes</button>
+                    </li>-->
+                </ul>
+            </article>
+            <article class="game_container game_container--videogames" data-theme="videogames">
                 <div class="game_menu">
                     <ul class="game_menu_infos">
                         <li class="game_menu_info">
-                            <button class="game_btn game_btn--back"><</button>
+                            <button class="game_btn game_btn--back">< Retour</button>
                         </li>
                         <li class="game_menu_info game_menu_info--center">
                             <div class="info info_lives">
@@ -34,39 +68,102 @@
                             </div>
                         </li>
                         <li class="game_menu_info">
-                            <span class="info_sound"></span>
+                            <span class="info_sound info_sound--musics">Musique :</span>
                         </li>
-                    </ul>
-                    <ul class="game_menu_items active">
-                        <li class="game_menu_item game_menu_item--title">
-                            Le jeu des références cachées
-                        </li>
-                        <li class="game_menu_item game_menu_item--i">
-                            <a>
-                                i
-                            </a>
-                            Règles et infos
-                        </li>
-                        <li class="game_menu_item game_menu_item--rules">
-                            <p>Je vous propose un petit jeu où il vous faut trouver, cachées au sein d'une image, des références qui me sont chères.</p>
-                            <p>Attention ! Chaque mauvaise réponse vous enlève une vie et vous n'en avez que 5 !</p>
-                            <p>Heureusement, vous pouvez en gagner en marquant des points !</p>
-                        </li>
-                        <li class="game_menu_item game_menu_item--subtitle">
-                            Sélectionnez votre thème :
-                        </li>
-                        <li class="game_menu_item" data-theme="movies">
-                            <button class="game_btn">Films</button>
-                        </li>
-                        <!--<li class="game_menu_item" data-theme="series">
-                            <button class="game_btn">Séries & animes</button>
-                        </li>-->
-                        <li class="game_menu_item" data-theme="videogames">
-                            <button class="game_btn">Jeux vidéo</button>
+                        <li class="game_menu_info">
+                            <span class="info_sound info_sound--sounds">Sons :</span>
                         </li>
                     </ul>
                 </div>
-                <div class="game_content game_content--movies" data-theme="movies">
+                <div class="game_content game_content--videogames">
+                    <img class="game_image" src="images/fond-videogames.png" />
+                    <div class="game_dialog_bg"></div>
+                    <div class="game_dialog">
+                        <button class="game_btn game_dialog_close">X</button>
+                        <h3 class="game_dialog_title">À quoi cet objet fait-il référence ?</h3>
+                        <input class="game_dialog_input game_dialog_input--videogames" type="text" />
+                        <button class="game_btn game_dialog_guess">Guess</button>
+                        <h4 class="game_dialog_text"></h4>
+                    </div>
+                    <div class="game_victory">
+                        <h3>Victoire !</h3>
+                        <p>Bravo ! Vous avez toutes les références !</p>
+                        <p>C'est que vous avez les mêmes goûts que moi, c'est très étonnant !</p>
+                        <div class="game_victory_gif">
+                            <img src="images/knight-solar.gif" />
+                        </div>
+                        <button class="game_btn game_btn--back">Essayer un autre thème ?</button>
+                        <button class="game_btn game_victory_close">Revoir les références</button>
+                    </div>
+                    <div class="object object--videogames" data-id="1" data-found=false></div>
+                    <div class="object object--videogames" data-id="2" data-found=false></div>
+                    <div class="object object--videogames" data-id="3" data-found=false></div>
+                    <div class="object object--videogames" data-id="4" data-found=false></div>
+                    <div class="object object--videogames" data-id="5" data-found=false></div>
+                    <div class="object object--videogames" data-id="6" data-found=false></div>
+                    <div class="object object--videogames" data-id="7" data-found=false></div>
+                    <div class="object object--videogames" data-id="8" data-found=false></div>
+                    <div class="object object--videogames" data-id="9" data-found=false></div>
+                    <div class="object object--videogames" data-id="10" data-found=false></div>
+                    <div class="object object--videogames" data-id="11" data-found=false></div>
+                    <div class="object object--videogames" data-id="12" data-found=false></div>
+                    <div class="object object--videogames" data-id="13" data-found=false></div>
+                    <div class="object object--videogames" data-id="14" data-found=false></div>
+                    <div class="object object--videogames" data-id="15" data-found=false></div>
+                    <div class="object object--videogames" data-id="16" data-found=false></div>
+                    <div class="object object--videogames" data-id="17" data-found=false></div>
+                    <div class="object object--videogames" data-id="18" data-found=false></div>
+                    <div class="object object--videogames" data-id="19" data-found=false></div>
+                    <div class="object object--videogames" data-id="20" data-found=false></div>
+                    <div class="object object--videogames" data-id="21" data-found=false></div>
+                    <div class="object object--videogames" data-id="22" data-found=false></div>
+                    <div class="object object--videogames" data-id="23" data-found=false></div>
+                    <div class="object object--videogames" data-id="24" data-found=false></div>
+                    <div class="object object--videogames" data-id="25" data-found=false></div>
+                    <div class="object object--videogames" data-id="26" data-found=false></div>
+                    <div class="object object--videogames" data-id="27" data-found=false></div>
+                    <div class="object object--videogames" data-id="28" data-found=false></div>
+                    <div class="object object--videogames" data-id="29" data-found=false></div>
+                    <div class="object object--videogames" data-id="30" data-found=false></div>
+                    <div class="object object--videogames" data-id="31" data-found=false></div>
+                    <div class="object object--videogames" data-id="32" data-found=false></div>
+                    <div class="object object--videogames" data-id="33" data-found=false></div>
+                    <div class="object object--videogames" data-id="34" data-found=false></div>
+                    <div class="object object--videogames" data-id="35" data-found=false></div>
+                </div>
+            </article>
+            <article class="game_container game_container--movies" data-theme="movies">
+                <div class="game_menu">
+                    <ul class="game_menu_infos">
+                        <li class="game_menu_info">
+                            <button class="game_btn game_btn--back">< Retour</button>
+                        </li>
+                        <li class="game_menu_info game_menu_info--center">
+                            <div class="info info_lives">
+                                <h4 class="info_lives_title">Lives :</h4>
+                                <span class="info_lives_heart full" data-live="1"></span>
+                                <span class="info_lives_heart full" data-live="2"></span>
+                                <span class="info_lives_heart full" data-live="3"></span>
+                                <span class="info_lives_heart full" data-live="4"></span>
+                                <span class="info_lives_heart full" data-live="5"></span>
+                            </div>
+                            <div class="info info_findings">
+                                <h4>Found :</h4>
+                                <ul class="info_findings_score">
+                                    <li class="info_findings_points"></li>/
+                                    <li class="info_findings_maxpoints"></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="game_menu_info">
+                            <span class="info_sound info_sound--musics">Musique :</span>
+                        </li>
+                        <li class="game_menu_info">
+                            <span class="info_sound info_sound--sounds">Sons :</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="game_content game_content--movies">
                     <img class="game_image" src="images/fond-movies.png" />
                     <div class="game_dialog_bg"></div>
                     <div class="game_dialog">
@@ -147,7 +244,39 @@
                     <div class="object object--movies" data-id="59" data-found=false></div>
                     <div class="object object--movies" data-id="60" data-found=false></div>
                 </div>
-                <div class="game_content game_content--series" data-theme="series">
+            </article>
+            <article class="game_container game_container--series" data-theme="series">
+                <div class="game_menu">
+                    <ul class="game_menu_infos">
+                        <li class="game_menu_info">
+                            <button class="game_btn game_btn--back">< Retour</button>
+                        </li>
+                        <li class="game_menu_info game_menu_info--center">
+                            <div class="info info_lives">
+                                <h4 class="info_lives_title">Lives :</h4>
+                                <span class="info_lives_heart full" data-live="1"></span>
+                                <span class="info_lives_heart full" data-live="2"></span>
+                                <span class="info_lives_heart full" data-live="3"></span>
+                                <span class="info_lives_heart full" data-live="4"></span>
+                                <span class="info_lives_heart full" data-live="5"></span>
+                            </div>
+                            <div class="info info_findings">
+                                <h4>Found :</h4>
+                                <ul class="info_findings_score">
+                                    <li class="info_findings_points"></li>/
+                                    <li class="info_findings_maxpoints"></li>
+                                </ul>
+                            </div>
+                        </li>
+                        <li class="game_menu_info">
+                            <span class="info_sound info_sound--musics">Musique :</span>
+                        </li>
+                        <li class="game_menu_info">
+                            <span class="info_sound info_sound--sounds">Sons :</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="game_content game_content--series">
                     <img class="game_image" />
                     <div class="game_dialog_bg"></div>
                     <div class="game_dialog">
@@ -165,62 +294,6 @@
                     <div class="object object--series" data-id="1" data-found=false></div>
                     <div class="object object--series" data-id="2" data-found=false></div>
                 </div>
-                <div class="game_content game_content--videogames" data-theme="videogames">
-                    <img class="game_image" src="images/fond-videogames.png" />
-                    <div class="game_dialog_bg"></div>
-                    <div class="game_dialog">
-                        <button class="game_btn game_dialog_close">X</button>
-                        <h3 class="game_dialog_title">À quoi cet objet fait-il référence ?</h3>
-                        <input class="game_dialog_input game_dialog_input--videogames" type="text" />
-                        <button class="game_btn game_dialog_guess">Guess</button>
-                        <h4 class="game_dialog_text"></h4>
-                    </div>
-                    <div class="game_victory">
-                        <h3>Victoire !</h3>
-                        <p>Bravo ! Vous avez toutes les références !</p>
-                        <p>C'est que vous avez les mêmes goûts que moi, c'est très étonnant !</p>
-                        <div class="game_victory_gif">
-                            <img src="images/knight-solar.gif" />
-                        </div>
-                        <button class="game_btn game_btn--back">Essayer un autre thème ?</button>
-                        <button class="game_btn game_victory_close">Revoir les références</button>
-                    </div>
-                    <div class="object object--videogames" data-id="1" data-found=false></div>
-                    <div class="object object--videogames" data-id="2" data-found=false></div>
-                    <div class="object object--videogames" data-id="3" data-found=false></div>
-                    <div class="object object--videogames" data-id="4" data-found=false></div>
-                    <div class="object object--videogames" data-id="5" data-found=false></div>
-                    <div class="object object--videogames" data-id="6" data-found=false></div>
-                    <div class="object object--videogames" data-id="7" data-found=false></div>
-                    <div class="object object--videogames" data-id="8" data-found=false></div>
-                    <div class="object object--videogames" data-id="9" data-found=false></div>
-                    <div class="object object--videogames" data-id="10" data-found=false></div>
-                    <div class="object object--videogames" data-id="11" data-found=false></div>
-                    <div class="object object--videogames" data-id="12" data-found=false></div>
-                    <div class="object object--videogames" data-id="13" data-found=false></div>
-                    <div class="object object--videogames" data-id="14" data-found=false></div>
-                    <div class="object object--videogames" data-id="15" data-found=false></div>
-                    <div class="object object--videogames" data-id="16" data-found=false></div>
-                    <div class="object object--videogames" data-id="17" data-found=false></div>
-                    <div class="object object--videogames" data-id="18" data-found=false></div>
-                    <div class="object object--videogames" data-id="19" data-found=false></div>
-                    <div class="object object--videogames" data-id="20" data-found=false></div>
-                    <div class="object object--videogames" data-id="21" data-found=false></div>
-                    <div class="object object--videogames" data-id="22" data-found=false></div>
-                    <div class="object object--videogames" data-id="23" data-found=false></div>
-                    <div class="object object--videogames" data-id="24" data-found=false></div>
-                    <div class="object object--videogames" data-id="25" data-found=false></div>
-                    <div class="object object--videogames" data-id="26" data-found=false></div>
-                    <div class="object object--videogames" data-id="27" data-found=false></div>
-                    <div class="object object--videogames" data-id="28" data-found=false></div>
-                    <div class="object object--videogames" data-id="29" data-found=false></div>
-                    <div class="object object--videogames" data-id="30" data-found=false></div>
-                    <div class="object object--videogames" data-id="31" data-found=false></div>
-                    <div class="object object--videogames" data-id="32" data-found=false></div>
-                    <div class="object object--videogames" data-id="33" data-found=false></div>
-                    <div class="object object--videogames" data-id="34" data-found=false></div>
-                    <div class="object object--videogames" data-id="35" data-found=false></div>
-                </div>
             </article>
         </section>
         <audio id="correct" class="sound" type="audio/mpeg"  src="sounds/correct.mp3" preload="auto"></audio>
@@ -230,6 +303,4 @@
         <audio id="music_movies" class="sound" type="audio/mpeg"  src="sounds/ambient_movies.mp3" preload="auto"></audio>
     </main>
 </body>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<script src="js/hidden.js"></script>
 </html>

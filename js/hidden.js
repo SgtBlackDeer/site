@@ -7,15 +7,39 @@ $(document).ready(function () {
     var dial_title = $('.game_dialog_title');
     var dial_text = $('.game_dialog_text');
     var object = $('.object');
-    var menuBtn = $('.game_menu_item[data-theme]');
+    var menuBtn = $('[data-theme-btn]');
     var theme = "";
     var lifeUp = 0;
+    var musicOn = true;
     var soundOn = true;
     var closeTO;
+    Cookies.set("lives", lives, { expires: 365 });
+    Cookies.set("points", points, { expires: 365 });
 
-    function onLoad() {
-        document.addEventListener("deviceready", onDeviceReady, false);
+    function setCookie(cname, cvalue, exdays) {
+        const d = new Date();
+        d.setTime(d.getTime() + (exdays*24*60*60*1000));
+        let expires = "expires="+ d.toUTCString();
+        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
     }
+
+    function getCookie(cname) {
+        let name = cname + "=";
+        let decodedCookie = decodeURIComponent(document.cookie);
+        let ca = decodedCookie.split(';');
+        for(let i = 0; i <ca.length; i++) {
+            let c = ca[i];
+            while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+            }
+            if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+            }
+        }
+        return "";
+    }
+
+    document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
         document.addEventListener("backbutton", onBackKeyDown, false);
@@ -27,18 +51,12 @@ $(document).ready(function () {
     });
 
     menuBtn.click(function () {
-        theme = $(this).attr('data-theme');
+        theme = $(this).attr('data-theme-btn');
         object.attr('data-found', 'false');
         object.removeClass('found');
 
-        $('.game_content[data-theme=' + theme + ']').addClass('active');
-        $('.game_menu_items').removeClass('active');
-        setTimeout(function () {
-            $('.game_menu').addClass('reduced');
-        }, 1000);
-        setTimeout(function () {
-            $('.game_menu_infos').addClass('active');
-        }, 2000);
+        $('[data-theme=' + theme + ']').addClass('active');
+        $('.game_home').removeClass('game_home--active');
 
         if (theme == "movies") {
             max_points = 60;
@@ -48,7 +66,35 @@ $(document).ready(function () {
             max_points = 35;
         }
 
-        if (soundOn == true && $('#music_' + theme)[0] !== undefined) {
+        lives = parseInt(Cookies.get("lives"));
+        if (isNaN(lives) || lives < 1) {
+            lives = 5;
+            console.log(Cookies.get());
+        }
+
+        points = parseInt(Cookies.get("points"));
+        if (isNaN(points) || points < 0) {
+            points = 0;
+        }
+
+        if (Cookies.get("music") == "false") {
+            musicOn = false;
+            $('.info_sound--musics').addClass('off');
+        }
+
+        if (Cookies.get("sound") == "false") {
+            soundOn = false;
+            $('.info_sound--sounds').addClass('off');
+        }
+
+        for (let i = 1; i <= max_points; i++) {
+            if (Cookies.get("ref_" + theme + "_" + i) == "true") {
+                $('[data-id="' + i + '"]').attr('data-found', 'true');
+                $('[data-id="' + i + '"]').addClass('found');
+            }
+        }
+
+        if (Cookies.get("music") == "true" && musicOn == true && $('#music_' + theme)[0] !== undefined) {
             $('#music_' + theme)[0].volume = 0.5;
             $('#music_' + theme)[0].play();
             $('#music_' + theme)[0].loop = true;
@@ -58,23 +104,40 @@ $(document).ready(function () {
     });
 
     $('.game_btn--back').click(function () {
-        menu();
-        init();
+        $('[data-theme=' + theme + ']').removeClass('active');
+        $('.game_home').addClass('game_home--active');
     });
 
-    $('.info_sound').click(function () {
+    $('.info_sound--musics').click(function () {
         $(this).toggleClass('off');
-        if (soundOn == true) {
-            soundOn = false;
+        if (musicOn == true) {
+            musicOn = false;
             if ($('#music_' + theme)[0] !== undefined) {
                 $('#music_' + theme)[0].pause();
             }
+            Cookies.set("music", "false", { expires: 365 });
         } else {
-            soundOn = true;
+            musicOn = true;
             if ($('#music_' + theme)[0] !== undefined) {
                 $('#music_' + theme)[0].play();
             }
+            Cookies.set("music", "true", { expires: 365 });
         }
+        console.log(Cookies.get("music"));
+    });
+
+    $('.info_sound--sounds').click(function () {
+        $(this).toggleClass('off');
+        if (soundOn == true) {
+            soundOn = false;
+            Cookies.set("sound", "false", { expires: 365 });
+        } else {
+            soundOn = true;
+            Cookies.set("sound", "true", { expires: 365 });
+        }
+        console.log(Cookies.get("sound"));
+        setCookie("sound", "test", 365);
+        console.log(getCookie("sound"));
     });
 
     object.click(function () {
@@ -550,7 +613,7 @@ $(document).ready(function () {
                     break;
                 case 40:
                     ref_title = ["Demon's Souls", "Demons Soul", "Demon Souls", "Demon Soul"];
-                    ref_desc = "Umbasa !";
+                    ref_desc = "You have a heart of gold.";
                     break;
                 default:
             }
@@ -627,6 +690,8 @@ $(document).ready(function () {
             if (guess == answer) {
                 $('[data-id=' + obj_Id + ']').attr('data-found', 'true');
                 $('[data-id=' + obj_Id + ']').addClass('found');
+                Cookies.set("ref_" + theme + "_" + obj_Id, "true", { expires: 365 });
+                console.log(Cookies.get("ref_" + theme + "_" + obj_Id));
                 correct = true;
                 break;
             }
@@ -643,6 +708,7 @@ $(document).ready(function () {
                 $('.info_lives_heart[data-live="' + (lives + 1) + '"]').removeClass('full');
                 $('.info_lives_heart[data-live="' + (lives + 1) + '"]').removeClass('backward');
             }, 500);
+            Cookies.set("lives", lives, { expires: 365 });
             $('.game_dialog_input').val("");
             dial_text.text("Mauvaise réponse !");
             setTimeout(function () {
@@ -655,8 +721,11 @@ $(document).ready(function () {
             dial_title.addClass('anim');
             displayAnswer();
             points++;
+            Cookies.set("points", points, { expires: 365 });
+            console.log(Cookies.get("points"));
             if (lives < 5) {
                 lifeUp++;
+                Cookies.set("lifeUp", lifeUp, { expires: 365 });
             }
             $('.info_findings_points').text(points);
             closeTO = setTimeout(function () {
@@ -694,6 +763,7 @@ $(document).ready(function () {
         }
 
         $('.game_dialog_input').focus();
+        console.log(Cookies.get());
     };
 
     function displayAnswer() {
@@ -714,7 +784,7 @@ $(document).ready(function () {
         $('.game_dialog').removeClass('active');
         $('.game_dialog_bg').removeClass('active');
         setTimeout(function () {
-            $('.game_menu_items').addClass('active');
+            $('.game_home').addClass('game_home--active');
         }, 2000);
         setTimeout(function () {
             $('.game_content').removeClass('active');
@@ -728,12 +798,6 @@ $(document).ready(function () {
         lives = 5;
         lifeUp = 0;
         $('.info_findings_points').text(points);
-
-    };
-
-    function menu() {
-        $('.game_menu_item--title').text('Références cachées');
-        $('.game_menu_item--subtitle').text('Sélectionnez votre thème :');
     };
 
     function lost() {
