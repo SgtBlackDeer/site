@@ -16,29 +16,6 @@ $(document).ready(function () {
     Cookies.set("lives", lives, { expires: 365 });
     Cookies.set("points", points, { expires: 365 });
 
-    function setCookie(cname, cvalue, exdays) {
-        const d = new Date();
-        d.setTime(d.getTime() + (exdays*24*60*60*1000));
-        let expires = "expires="+ d.toUTCString();
-        document.cookie = cname + "=" + cvalue + ";" + expires + ";path=/";
-    }
-
-    function getCookie(cname) {
-        let name = cname + "=";
-        let decodedCookie = decodeURIComponent(document.cookie);
-        let ca = decodedCookie.split(';');
-        for(let i = 0; i <ca.length; i++) {
-            let c = ca[i];
-            while (c.charAt(0) == ' ') {
-            c = c.substring(1);
-            }
-            if (c.indexOf(name) == 0) {
-            return c.substring(name.length, c.length);
-            }
-        }
-        return "";
-    }
-
     document.addEventListener("deviceready", onDeviceReady, false);
 
     function onDeviceReady() {
@@ -94,10 +71,12 @@ $(document).ready(function () {
             }
         }
 
-        if (Cookies.get("music") == "true" && musicOn == true && $('#music_' + theme)[0] !== undefined) {
+        if (Cookies.get("music") == "true" || (musicOn == true && $('#music_' + theme)[0] !== undefined)) {
             $('#music_' + theme)[0].volume = 0.5;
             $('#music_' + theme)[0].play();
             $('#music_' + theme)[0].loop = true;
+        } else {
+            $(".info_sound--musics").addClass('off');
         }
 
         $('.info_findings_maxpoints').text(max_points);
@@ -123,7 +102,6 @@ $(document).ready(function () {
             }
             Cookies.set("music", "true", { expires: 365 });
         }
-        console.log(Cookies.get("music"));
     });
 
     $('.info_sound--sounds').click(function () {
@@ -135,9 +113,6 @@ $(document).ready(function () {
             soundOn = true;
             Cookies.set("sound", "true", { expires: 365 });
         }
-        console.log(Cookies.get("sound"));
-        setCookie("sound", "test", 365);
-        console.log(getCookie("sound"));
     });
 
     object.click(function () {
